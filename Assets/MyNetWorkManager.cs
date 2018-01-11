@@ -19,10 +19,17 @@ public class MyNetWorkManager : NetworkManager {
     public override void OnStartClient(NetworkClient myClient)
     {
         Debug.Log("Client start requested at " + Time.timeSinceLevelLoad);
+        InvokeRepeating("PrintDots", 0f, 1f);
     }
 
     public override void OnClientConnect(NetworkConnection conn)
     {
         Debug.Log("Client is connected at " + Time.timeSinceLevelLoad + " - On IP: " + conn.address);
+        CancelInvoke();
+    }
+
+    void PrintDots()
+    {
+        Debug.Log(".");
     }
 }
